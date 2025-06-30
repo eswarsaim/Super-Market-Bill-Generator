@@ -34,49 +34,47 @@ items={'Rice':20,'Sugar':30,'Salt':10,'oil':100,'Paneer':110,'Maggi':12,'Tea':50
 option=int(input("Do you want to see the list of items available in the Supermarket? Press 1 for Yes and 2 for No: "))
 if option==1:
     print(lists)
-for i in range(len(items)):
-    inp1=int(input("If You Want to buy Press 1 or Press 2 to skip: ")) #if user wants to buy the item
-    if inp1==2:
+
+# Shopping loop
+while True:
+    inp1 = int(input("If You Want to buy Press 1 or Press 2 to skip: "))
+    if inp1 == 2:
         break
-    if inp1==1:
-        item=input("Enter the item you want to buy: ")
-        quantity=int(input("Enter the quantity : "))
+    if inp1 == 1:
+        item = input("Enter the item you want to buy: ")
+        quantity = int(input("Enter the quantity : "))
         if item in items.keys():
-            price=quantity*(items[item])
-            pricelist.append((item,quantity,items,price))
-            totalprice+=price
+            price = quantity * items[item]
+            pricelist.append((item, quantity, price))
+            totalprice += price
             ilist.append(item)
             qlist.append(quantity)
             plist.append(price)
-            Gst=(totalprice*5)/100
-            finalprice=totalprice+Gst
         else:
             print("You Entered Item is not available")
     else:
         print("You Entered Invalid Number")
-    inp=int(input("Can I Bill The Items 1 For Yes or 2 For No:")) #if user wants to buy more items   
-    if inp==1:
-        pass 
-    if finalprice!=0:
-        print(25*"=","ESS Supermarket",25*"=")
-        print(28*" ","Pulivendula")
-        print("Name:",Name,30*" ","Date:",datetime.now())
-        print(75*"-")
-        print("s.no",8*" ","Items",8*" ","Quantity",8*" ","Price")
-        for i in range(len(pricelist)):
-            print("Item: ",5*' ',ilist[i],8*' ',qlist[i],15*' ',plist[i])
-            print(75*"-")
-            print(50*" ","Total Price: ",'Rs',totalprice)
-            print(50*" ","GST: ",7*" ",'Rs',Gst)
-            print(75*"-")
-            print(50*" ","Final Amount: ",'Rs',finalprice)
-            print(75*"-")
-            print(25*'*',"Thank You Visit Again",25*'*')
-            print(75*"-")
+    inp = int(input("Do you want to add more items? 1 for Yes, 2 for No: "))
+    if inp == 2:
+        break
 
+# Calculate GST and final price
+if totalprice != 0:
+    Gst = (totalprice * 5) / 100
+    finalprice = totalprice + Gst
 
-
-
-
-            
-        
+    print(25*"=","ESS Supermarket",25*"=")
+    print(28*" ","Pulivendula")
+    print("Name:", Name, 30*" ", "Date:", datetime.now())
+    print(75*"-")
+    print("s.no", 8*" ", "Items", 8*" ", "Quantity", 8*" ", "Price")
+    for i in range(len(pricelist)):
+        print(i+1, 10*" ", ilist[i], 10*" ", qlist[i], 10*" ", plist[i])
+    print(75*"-")
+    print(50*" ", "Total Price: ", 'Rs', totalprice)
+    print(50*" ", "GST: ", 7*" ", 'Rs', Gst)
+    print(75*"-")
+    print(50*" ", "Final Amount: ", 'Rs', finalprice)
+    print(75*"-")
+    print(25*'', "Thank You Visit Again", 25'*')
+    print(75*"-")
